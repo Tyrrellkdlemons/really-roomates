@@ -9,6 +9,13 @@
   <title>REALLY ROOMATES — Grace & Strings: California Transitional Housing Launchpad</title>
   
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="REALLY ROOMATES">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="/styles.css">
   
   <!-- Preconnect to Google Fonts for elegant typography -->
@@ -142,10 +149,10 @@
 
     <!-- Header Right Quick Actions -->
     <div class="header-actions">
-      <button class="btn-secondary" id="btn-open-tour" aria-label="Start interactive 60-second guided tour">
+      <button class="btn-secondary header-tour-btn" id="btn-open-tour" aria-label="Start interactive 60-second guided tour">
         <span>✨ 60s Tour</span>
       </button>
-      <button class="btn-icon" id="btn-print-page" aria-label="Print or save housing plan as PDF" title="Print Housing Plan">
+      <button class="btn-icon header-print-btn" id="btn-print-page" aria-label="Print or save housing plan as PDF" title="Print Housing Plan">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 6 2 18 2 18 9"/>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
@@ -159,8 +166,55 @@
           <line x1="12" y1="17" x2="12.01" y2="17"/>
         </svg>
       </button>
+      <!-- Mobile App Hamburger Toggle -->
+      <button class="mobile-nav-toggle" id="btn-mobile-nav" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Slide-Out App Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+  <aside class="mobile-app-drawer" id="mobile-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true" style="width: 32px; height: 32px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg>
+        </div>
+        <span class="brand-title" style="font-size: 1.1rem;">REALLY ROOMATES</span>
+      </div>
+      <button class="drawer-close-btn" id="btn-close-drawer" aria-label="Close navigation menu">✕</button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section-label">HOUSING SEARCH</div>
+      <a class="drawer-link" href="#housing-hub" data-drawer-cat="Fast Move-in">⚡ PadSplit (24–48h Move-In)</a>
+      <a class="drawer-link" href="#housing-hub" data-drawer-cat="Room Share / Coliving">🏠 Furnished Finder & Rooms</a>
+      <a class="drawer-link" href="#housing-hub" data-drawer-cat="Transitional & Sober Living">🕊️ Oxford Houses & Recovery</a>
+      <a class="drawer-link" href="#housing-hub" data-drawer-cat="Extended Stay Bridge">🏨 Extended Stay Suites</a>
+      
+      <div class="drawer-section-label">CALIFORNIA AID & LAW</div>
+      <a class="drawer-link" href="#housing-hub" data-drawer-cat="Deposit & Downpayment Grant">⚖️ CA AB 12 Law (1-Mo Cap)</a>
+      <a class="drawer-link" href="#housing-hub" data-drawer-search="2-1-1">📞 2-1-1 CES Rapid Rehousing</a>
+      <a class="drawer-link" href="#housing-hub" data-drawer-region="Orange County / SoCal">🍊 Orange County Grants</a>
+      
+      <div class="drawer-section-label">ACTION TOOLS</div>
+      <a class="drawer-link" href="#cash-calculator">🧮 Move-In Cash Calculator</a>
+      <a class="drawer-link" href="#move-checklist">✓ 7-Day Move Fast Checklist</a>
+      <a class="drawer-link" href="#musician-guide">📋 Musician Roommate Pitch</a>
+      <a class="drawer-link" href="#guitar-sanctuary">🎸 Acoustic Guitar Strummer</a>
+      <a class="drawer-link" href="#devotional-section">✝ Daily Scripture of Peace</a>
+      <a class="drawer-link" href="#support-prayer">✉️ Prayer & Guidance Form</a>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-primary" id="btn-drawer-tour" style="width: 100%; justify-content: center;">
+        <span>✨ Launch 60s Tour</span>
+      </button>
+    </div>
+  </aside>
 
   <main id="main-content">
     <!-- ========================================================================
@@ -359,7 +413,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-rent" class="calc-number-input" value="850" min="0" step="25">
+                <input type="number" id="calc-rent" class="calc-number-input" value="850" min="0" step="25" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
 
@@ -371,7 +425,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-deposit" class="calc-number-input" value="850" min="0" step="25">
+                <input type="number" id="calc-deposit" class="calc-number-input" value="850" min="0" step="25" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
 
@@ -383,7 +437,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-app-fees" class="calc-number-input" value="45" min="0" step="5">
+                <input type="number" id="calc-app-fees" class="calc-number-input" value="45" min="0" step="5" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
 
@@ -395,7 +449,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-moving" class="calc-number-input" value="120" min="0" step="10">
+                <input type="number" id="calc-moving" class="calc-number-input" value="120" min="0" step="10" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
 
@@ -407,7 +461,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-buffer" class="calc-number-input" value="180" min="0" step="10">
+                <input type="number" id="calc-buffer" class="calc-number-input" value="180" min="0" step="10" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
 
@@ -419,7 +473,7 @@
               </div>
               <div class="input-with-symbol">
                 <span class="currency-sym">$</span>
-                <input type="number" id="calc-savings" class="calc-number-input" value="600" min="0" step="25" style="border-color: var(--amber-500);">
+                <input type="number" id="calc-savings" class="calc-number-input" value="600" min="0" step="25" style="border-color: var(--amber-500);" inputmode="numeric" pattern="[0-9]*">
               </div>
             </div>
           </div>
@@ -796,6 +850,32 @@
       </div>
     </div>
   </div>
+
+  <!-- ========================================================================
+       Mobile App Bottom Navigation Dock (Phones & Tablets)
+       ======================================================================== -->
+  <nav class="mobile-bottom-bar" aria-label="Mobile App Navigation">
+    <a href="#housing-hub" class="mobile-tab-btn active" data-tab-target="housing-hub">
+      <span class="tab-icon" aria-hidden="true">🔍</span>
+      <span class="tab-label">Rooms</span>
+    </a>
+    <a href="#cash-calculator" class="mobile-tab-btn" data-tab-target="cash-calculator">
+      <span class="tab-icon" aria-hidden="true">🧮</span>
+      <span class="tab-label">Calculator</span>
+    </a>
+    <a href="#move-checklist" class="mobile-tab-btn" data-tab-target="move-checklist">
+      <span class="tab-icon" aria-hidden="true">✓</span>
+      <span class="tab-label">Checklist</span>
+    </a>
+    <a href="#guitar-sanctuary" class="mobile-tab-btn" data-tab-target="guitar-sanctuary">
+      <span class="tab-icon" aria-hidden="true">🎸</span>
+      <span class="tab-label">Grace</span>
+    </a>
+    <button class="mobile-tab-btn" id="mobile-tab-tour" aria-label="Start Tour">
+      <span class="tab-icon" aria-hidden="true">✨</span>
+      <span class="tab-label">Tour</span>
+    </button>
+  </nav>
 
   <!-- ========================================================================
        Footer

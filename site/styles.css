@@ -435,13 +435,225 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Nav Toggle */
 .mobile-nav-toggle {
   display: none;
-  background: transparent;
-  border: none;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--border-subtle);
   color: var(--amber-300);
   width: var(--touch-target-min);
   height: var(--touch-target-min);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-toggle:hover, .mobile-nav-toggle:focus-visible {
+  background: var(--amber-500);
+  color: #120904;
+  outline: none;
+}
+
+@media (max-width: 992px) {
+  .nav-container {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-tour-btn, .header-print-btn {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile App Slide-Out Drawer & Backdrop
+   -------------------------------------------------------------------------- */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9998;
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.mobile-drawer-backdrop.open {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-app-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-bright);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.28s var(--ease);
+  padding: env(safe-area-inset-top, 16px) 16px env(safe-area-inset-bottom, 16px);
+}
+
+.mobile-app-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drawer-section-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--amber-400);
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+.drawer-section-label:first-child {
+  margin-top: 0;
+}
+
+.drawer-link {
+  color: var(--text-cream);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  min-height: var(--touch-target-min);
+  transition: background var(--transition-fast);
+}
+
+.drawer-link:hover, .drawer-link:active {
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--amber-200);
+}
+
+.drawer-footer {
+  padding: 16px 4px 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile App Bottom Navigation Dock (Phones & Tablets <= 768px)
+   -------------------------------------------------------------------------- */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(14, 10, 8, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.55);
+  z-index: 9990;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-bottom-bar {
+    display: flex;
+  }
+}
+
+.mobile-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  height: 52px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-tab-btn .tab-icon {
+  font-size: 1.25rem;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-tab-btn .tab-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mobile-tab-btn:hover, .mobile-tab-btn:focus-visible, .mobile-tab-btn.active {
+  color: var(--amber-300);
+}
+
+.mobile-tab-btn.active .tab-icon {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 6px var(--glow-amber));
+}
+
+.mobile-tab-btn:active {
+  transform: scale(0.92);
+}
+
+/* Touch feedback for interactive elements */
+button:active, a.btn-primary:active, a.btn-secondary:active, .launch-card:active, .chord-btn:active {
+  transform: scale(0.96) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1686,6 +1898,39 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 18px;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+/* Mobile Bottom-Sheet Modal Styling */
+@media (max-width: 600px) {
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-card {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 88vh;
+    max-height: 88dvh;
+    overflow-y: auto;
+    padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 16px));
+  }
+  .hero-pill {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+  }
+  .quick-launch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+  .chords-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .chord-btn {
+    padding: 10px 4px;
+    font-size: 0.95rem;
+  }
 }
 
 /* --------------------------------------------------------------------------

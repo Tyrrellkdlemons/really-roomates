@@ -1,0 +1,19 @@
+{
+  "name": "REALLY ROOMATES — Grace & Strings",
+  "short_name": "ReallyRoomates",
+  "description": "California transitional housing search engine, PadSplit rooms, AB 12 deposit protection, downpayment grants, and faith-centered musician sanctuary.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a09",
+  "theme_color": "#0c0a09",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "utilities", "housing"]
+}

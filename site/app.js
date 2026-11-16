@@ -464,6 +464,7 @@ class ReallyRoomatesApp {
 
     // 2. Setup Navigation & Dropdowns
     this.setupDropdownNavigation();
+    this.setupMobileNavigation();
 
     // 3. Setup Resource Search & Filters
     this.setupResourceFilters();
@@ -609,6 +610,107 @@ class ReallyRoomatesApp {
         pill.classList.remove('active');
       }
     });
+  }
+
+  // --------------------------------------------------------------------------
+  // Mobile Navigation App Shell (Drawer + Bottom Navigation Bar)
+  // --------------------------------------------------------------------------
+  setupMobileNavigation() {
+    const mobileNavBtn = document.getElementById('btn-mobile-nav');
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const closeBtn = document.getElementById('btn-close-drawer');
+    const drawerTourBtn = document.getElementById('btn-drawer-tour');
+
+    const openDrawer = () => {
+      if (drawer) drawer.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      if (mobileNavBtn) mobileNavBtn.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeDrawer = () => {
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      if (mobileNavBtn) mobileNavBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    if (mobileNavBtn) mobileNavBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+    if (drawerTourBtn) {
+      drawerTourBtn.addEventListener('click', () => {
+        closeDrawer();
+        const openTourBtn = document.getElementById('btn-open-tour');
+        if (openTourBtn) openTourBtn.click();
+      });
+    }
+
+    // Drawer links navigation
+    const drawerLinks = document.querySelectorAll('.drawer-link');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeDrawer();
+        const cat = link.getAttribute('data-drawer-cat');
+        const region = link.getAttribute('data-drawer-region');
+        const search = link.getAttribute('data-drawer-search');
+
+        if (cat) {
+          this.filters.category = cat;
+          this.syncFilterPills('category', cat);
+        }
+        if (region) {
+          this.filters.region = region;
+          this.syncFilterPills('region', region);
+        }
+        if (search) {
+          this.filters.search = search;
+          const searchInput = document.getElementById('resource-search-input');
+          if (searchInput) searchInput.value = search;
+        }
+        this.renderResources();
+      });
+    });
+
+    // Mobile Bottom App Navigation Bar
+    const bottomTabs = document.querySelectorAll('.mobile-tab-btn[data-tab-target]');
+    bottomTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        bottomTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    const mobileTabTour = document.getElementById('mobile-tab-tour');
+    if (mobileTabTour) {
+      mobileTabTour.addEventListener('click', () => {
+        const openTourBtn = document.getElementById('btn-open-tour');
+        if (openTourBtn) openTourBtn.click();
+      });
+    }
+
+    // Scroll spy for mobile bottom navigation dock
+    const sections = ['housing-hub', 'cash-calculator', 'move-checklist', 'guitar-sanctuary'];
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 200;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            bottomTabs.forEach(tab => {
+              if (tab.getAttribute('data-tab-target') === id) {
+                tab.classList.add('active');
+              } else {
+                tab.classList.remove('active');
+              }
+            });
+            break;
+          }
+        }
+      }
+    }, { passive: true });
   }
 
   // --------------------------------------------------------------------------

@@ -25,6 +25,7 @@ def run_checks():
         "site/app.js",
         "site/audio.js",
         "site/favicon.svg",
+        "site/manifest.webmanifest",
         "site/_headers",
         "site/data/housing-resources.json",
         "site/data/checklist-items.json",
@@ -93,7 +94,10 @@ def run_checks():
             'id="tour-modal"',
             'id="resources-grid-container"',
             'id="tasks-list-container"',
-            'data-netlify="true"'
+            'data-netlify="true"',
+            'apple-mobile-web-app-capable',
+            'mobile-bottom-bar',
+            'mobile-app-drawer'
         ]
         for elem in critical_elements:
             if elem not in html:
