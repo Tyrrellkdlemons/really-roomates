@@ -1,6 +1,8 @@
 [
   {
     "id": "devotion-1",
+    "category": "hope",
+    "categoryLabel": "Hope & Future",
     "verse": "Jeremiah 29:11",
     "scripture": "“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”",
     "theme": "Hope in the Next Chapter",
@@ -9,6 +11,8 @@
   },
   {
     "id": "devotion-2",
+    "category": "peace",
+    "categoryLabel": "Peace & Anxiety",
     "verse": "Philippians 4:6–7",
     "scripture": "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds.",
     "theme": "Peace Over Pressure",
@@ -17,6 +21,8 @@
   },
   {
     "id": "devotion-3",
+    "category": "fresh-start",
+    "categoryLabel": "Fresh Start",
     "verse": "Isaiah 43:18–19",
     "scripture": "Forget the former things; do not dwell on the past. See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland.",
     "theme": "A Clean Slate & Fresh Start",
@@ -25,6 +31,8 @@
   },
   {
     "id": "devotion-4",
+    "category": "provision",
+    "categoryLabel": "Provision & Rent",
     "verse": "Psalm 121:1–2, 7–8",
     "scripture": "I lift up my eyes to the mountains—where does my help come from? My help comes from the Lord, the Maker of heaven and earth... The Lord will keep your going out and your coming in from this time forth and forevermore.",
     "theme": "Guarded in Your Coming & Going",
@@ -33,6 +41,8 @@
   },
   {
     "id": "devotion-5",
+    "category": "provision",
+    "categoryLabel": "Provision & Rent",
     "verse": "Matthew 6:31–33",
     "scripture": "So do not worry, saying, ‘What shall we eat?’ or ‘What shall we drink?’ or ‘What shall we wear?’ ... your heavenly Father knows that you need them. But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
     "theme": "Provision for Basic Needs",
@@ -41,6 +51,8 @@
   },
   {
     "id": "devotion-6",
+    "category": "guidance",
+    "categoryLabel": "Guidance & Discernment",
     "verse": "Psalm 32:8",
     "scripture": "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
     "theme": "Divine Navigation",
@@ -49,10 +61,22 @@
   },
   {
     "id": "devotion-7",
+    "category": "music",
+    "categoryLabel": "Music & Joy",
     "verse": "Colossians 3:16",
     "scripture": "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.",
     "theme": "Songs in the Transition",
     "reflection": "Music is medicine for the weary soul. David played his harp in the wilderness before he ever entered the palace. Let your guitar strings bring peace and joy into whatever space you inhabit.",
     "prayer": "Lord, use my music and my instrument as an instrument of peace, joy, and encouragement for myself and those around me."
+  },
+  {
+    "id": "devotion-8",
+    "category": "peace",
+    "categoryLabel": "Peace & Rest",
+    "verse": "Matthew 11:28",
+    "scripture": "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls.",
+    "theme": "Rest for the Weary",
+    "reflection": "Packing, hunting, and calling agencies is exhausting work. Take physical and spiritual rest today. A refreshed mind makes far better housing choices.",
+    "prayer": "Jesus, give rest to my weary spirit today. Renew my energy and help me walk with patience."
   }
 ]

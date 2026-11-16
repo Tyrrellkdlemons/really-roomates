@@ -421,10 +421,22 @@ class ReallyRoomatesApp {
     this.currentDevotionIndex = 0;
     this.currentTourStep = 0;
 
+    // Persistent Bookmarks / Favorites
+    try {
+      this.favorites = new Set(JSON.parse(localStorage.getItem('really_roomates_favorites_v1') || '[]'));
+    } catch (e) {
+      this.favorites = new Set();
+    }
+
     this.filters = {
       search: '',
       region: 'All',
-      category: 'All'
+      category: 'All',
+      budgetTier: 'All',
+      favoritesOnly: false,
+      musicianOnly: false,
+      zeroDepositOnly: false,
+      immediateOnly: false
     };
 
     this.checklistActiveTab = 'all';
@@ -468,24 +480,99 @@ class ReallyRoomatesApp {
 
     // 3. Setup Resource Search & Filters
     this.setupResourceFilters();
+    this.updateFavoritesCountBadge();
     this.renderResources();
 
-    // 4. Setup Move-In Cash Calculator
+    // 4. Setup Move-In Cash Calculator & AB 12 Letter
     this.setupCalculator();
+    this.setupLetterGenerator();
 
     // 5. Setup 7-Day Checklist
     this.setupChecklist();
 
-    // 6. Setup Grace & Strings (Audio + Devotionals)
+    // 6. Setup Grace & Strings (Audio + Visualizer + Devotionals)
     this.setupGraceAndStrings();
 
-    // 7. Setup Onboarding Tour Modal
+    // 7. Setup Scam Risk Detector & Interview Guide
+    this.setupScamDetector();
+
+    // 8. Setup Onboarding Tour Modal
     this.setupTourModal();
 
-    // 8. Setup Utility Actions (Print, Copy, Help)
+    // 9. Setup Utility Actions (Print, Copy, Help, Countdown)
     this.setupUtilityActions();
+    this.setupCountdown();
 
     console.log("REALLY ROOMATES application initialized successfully.");
+  }
+
+  // --------------------------------------------------------------------------
+  // Toast Notification System
+  // --------------------------------------------------------------------------
+  showToast(message, icon = '✓') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-message';
+    toast.innerHTML = `
+      <span aria-hidden="true" style="font-size: 1.1rem;">${icon}</span>
+      <span>${this.escapeHtml(message)}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(30px)';
+      setTimeout(() => toast.remove(), 350);
+    }, 3200);
+  }
+
+  // --------------------------------------------------------------------------
+  // Favorites / Bookmark Management
+  // --------------------------------------------------------------------------
+  toggleFavorite(id, name) {
+    if (this.favorites.has(id)) {
+      this.favorites.delete(id);
+      this.showToast(`Removed from saved favorites: ${name}`, '☆');
+    } else {
+      this.favorites.add(id);
+      this.showToast(`Saved to favorites: ${name}`, '⭐');
+    }
+
+    try {
+      localStorage.setItem('really_roomates_favorites_v1', JSON.stringify([...this.favorites]));
+    } catch (e) {}
+
+    this.updateFavoritesCountBadge();
+    this.renderResources();
+  }
+
+  updateFavoritesCountBadge() {
+    const badge = document.getElementById('fav-count-pill');
+    if (badge) {
+      badge.textContent = this.favorites.size;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Move Target Countdown
+  // --------------------------------------------------------------------------
+  setupCountdown() {
+    const countdownEl = document.getElementById('countdown-text');
+    if (!countdownEl) return;
+
+    // Target move date: 9 days from today
+    const now = new Date();
+    const targetDate = new Date();
+    targetDate.setDate(now.getDate() + 9);
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const formattedDate = `${monthNames[targetDate.getMonth()]} ${targetDate.getDate()}, ${targetDate.getFullYear()}`;
+
+    countdownEl.textContent = `Move Target: ${formattedDate} • 9 Days Remaining`;
   }
 
   // --------------------------------------------------------------------------
@@ -725,7 +812,7 @@ class ReallyRoomatesApp {
       });
     }
 
-    const filterPills = document.querySelectorAll('.filter-pill');
+    const filterPills = document.querySelectorAll('.filter-pill[data-filter]');
     filterPills.forEach(pill => {
       pill.addEventListener('click', () => {
         const filterType = pill.getAttribute('data-filter');
@@ -739,6 +826,22 @@ class ReallyRoomatesApp {
         this.renderResources();
       });
     });
+
+    // Quick feature toggles (Favorites, Musician-friendly, Zero-deposit, Immediate)
+    const toggleButtons = document.querySelectorAll('.filter-pill[data-toggle]');
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const toggleType = btn.getAttribute('data-toggle');
+        const isActive = btn.classList.toggle('active');
+
+        if (toggleType === 'favorites') this.filters.favoritesOnly = isActive;
+        if (toggleType === 'musicianFriendly') this.filters.musicianOnly = isActive;
+        if (toggleType === 'zeroDeposit') this.filters.zeroDepositOnly = isActive;
+        if (toggleType === 'immediate') this.filters.immediateOnly = isActive;
+
+        this.renderResources();
+      });
+    });
   }
 
   renderResources() {
@@ -749,6 +852,7 @@ class ReallyRoomatesApp {
     const query = this.filters.search;
     const regionFilter = this.filters.region;
     const catFilter = this.filters.category;
+    const budgetFilter = this.filters.budgetTier;
 
     const filtered = this.resources.filter(item => {
       // Region Match
@@ -759,9 +863,29 @@ class ReallyRoomatesApp {
       if (catFilter !== 'All' && item.category !== catFilter) {
         return false;
       }
+      // Budget Tier Match
+      if (budgetFilter !== 'All' && item.budgetTier && item.budgetTier !== budgetFilter) {
+        return false;
+      }
+      // Favorites Only
+      if (this.filters.favoritesOnly && !this.favorites.has(item.id)) {
+        return false;
+      }
+      // Musician Only
+      if (this.filters.musicianOnly && !item.musicianFriendly) {
+        return false;
+      }
+      // Zero / Low Deposit Only
+      if (this.filters.zeroDepositOnly && !item.zeroLowDeposit) {
+        return false;
+      }
+      // Immediate (< 48h)
+      if (this.filters.immediateOnly && !(item.moveInTimeline && item.moveInTimeline.includes('< 48'))) {
+        return false;
+      }
       // Keyword Match
       if (query) {
-        const searchable = `${item.name} ${item.summary} ${item.category} ${item.region} ${item.proTip} ${(item.keyPerks || []).join(' ')}`.toLowerCase();
+        const searchable = `${item.name} ${item.summary} ${item.category} ${item.region} ${item.proTip} ${(item.keyPerks || []).join(' ')} ${item.budgetTier || ''}`.toLowerCase();
         if (!searchable.includes(query)) return false;
       }
       return true;
@@ -775,31 +899,54 @@ class ReallyRoomatesApp {
       container.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px dashed var(--border-subtle);">
           <p style="font-size: 1.2rem; color: var(--amber-300); font-weight: 700;">No California resources match this exact filter</p>
-          <p class="text-muted" style="font-size: 0.9rem; margin-top: 6px;">Try clearing search keywords or choosing 'All California'</p>
+          <p class="text-muted" style="font-size: 0.9rem; margin-top: 6px;">Try clearing search keywords, toggling favorites, or choosing 'All California'</p>
           <button class="btn-secondary" id="btn-reset-filters" style="margin-top: 16px;">Reset All Filters</button>
         </div>
       `;
       const resetBtn = document.getElementById('btn-reset-filters');
       if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-          this.filters = { search: '', region: 'All', category: 'All' };
+          this.filters = {
+            search: '',
+            region: 'All',
+            category: 'All',
+            budgetTier: 'All',
+            favoritesOnly: false,
+            musicianOnly: false,
+            zeroDepositOnly: false,
+            immediateOnly: false
+          };
           const sInput = document.getElementById('resource-search-input');
           if (sInput) sInput.value = '';
           this.syncFilterPills('region', 'All');
           this.syncFilterPills('category', 'All');
+          this.syncFilterPills('budgetTier', 'All');
+          document.querySelectorAll('.filter-pill[data-toggle]').forEach(b => b.classList.remove('active'));
           this.renderResources();
         });
       }
       return;
     }
 
-    container.innerHTML = filtered.map(item => `
+    container.innerHTML = filtered.map(item => {
+      const isFav = this.favorites.has(item.id);
+      return `
       <article class="resource-card" aria-labelledby="title-${item.id}">
         <div class="card-top">
-          <div class="card-badges">
-            <span class="badge-tag tag-category">${this.escapeHtml(item.category)}</span>
-            <span class="badge-tag tag-region">${this.escapeHtml(item.region)}</span>
-            <span class="badge-tag tag-speed">${this.escapeHtml(item.speed)}</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <div class="card-badges">
+              <span class="badge-tag tag-category">${this.escapeHtml(item.category)}</span>
+              <span class="badge-tag tag-region">${this.escapeHtml(item.region)}</span>
+              <span class="badge-tag tag-speed">${this.escapeHtml(item.speed || item.moveInTimeline || '')}</span>
+            </div>
+            <div class="card-header-actions">
+              <button class="card-fav-btn ${isFav ? 'is-favorite' : ''}" data-fav-id="${item.id}" aria-label="${isFav ? 'Remove from favorites' : 'Save to favorites'}" title="${isFav ? 'Favorited' : 'Save to favorites'}">
+                ${isFav ? '★' : '☆'}
+              </button>
+              <button class="card-share-btn" data-share-url="${this.escapeHtml(item.actionUrl)}" data-share-name="${this.escapeHtml(item.name)}" aria-label="Share resource" title="Share resource">
+                ↗
+              </button>
+            </div>
           </div>
 
           <h3 class="resource-title" id="title-${item.id}">${this.escapeHtml(item.name)}</h3>
@@ -841,7 +988,38 @@ class ReallyRoomatesApp {
           </a>
         </div>
       </article>
-    `).join('');
+      `;
+    }).join('');
+
+    // Attach card action listeners (Favorites + Share)
+    container.querySelectorAll('.card-fav-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-fav-id');
+        const item = this.resources.find(r => r.id === id);
+        this.toggleFavorite(id, item ? item.name : id);
+      });
+    });
+
+    container.querySelectorAll('.card-share-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const url = btn.getAttribute('data-share-url');
+        const name = btn.getAttribute('data-share-name');
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: name, url });
+            return;
+          } catch (err) {}
+        }
+        try {
+          await navigator.clipboard.writeText(url);
+          this.showToast(`Copied link for ${name}!`, '📋');
+        } catch (err) {
+          this.showToast(`Resource: ${name}`, '🔗');
+        }
+      });
+    });
   }
 
   // --------------------------------------------------------------------------
@@ -892,6 +1070,13 @@ class ReallyRoomatesApp {
       setTxt('summary-total-needed', `$${totalNeeded.toLocaleString()}`);
       setTxt('summary-savings', `-$${savings.toLocaleString()}`);
       setTxt('summary-gap-amount', `$${gap.toLocaleString()}`);
+
+      // Sync California AB 12 Letter Generator Preview
+      const legalDeposit = Math.min(rent, deposit);
+      setTxt('ab12-letter-rent', rent.toLocaleString());
+      setTxt('ab12-letter-deposit', legalDeposit.toLocaleString());
+      setTxt('ab12-letter-rent2', rent.toLocaleString());
+      setTxt('ab12-letter-deposit2', legalDeposit.toLocaleString());
 
       const statusNote = document.getElementById('gap-status-text');
       const matchedBox = document.getElementById('matched-grants-container');
@@ -944,6 +1129,26 @@ class ReallyRoomatesApp {
     }
 
     updateCalc();
+  }
+
+  // --------------------------------------------------------------------------
+  // AB 12 Legal Notice Generator
+  // --------------------------------------------------------------------------
+  setupLetterGenerator() {
+    const copyBtn = document.getElementById('btn-copy-ab12-letter');
+    const letterBox = document.getElementById('ab12-letter-preview');
+
+    if (copyBtn && letterBox) {
+      copyBtn.addEventListener('click', async () => {
+        const text = letterBox.innerText || letterBox.textContent;
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          this.showToast("California AB 12 Notice Letter copied!", "📋");
+        } catch (e) {
+          this.showToast("Notice text ready for copy", "📋");
+        }
+      });
+    }
   }
 
   // --------------------------------------------------------------------------
@@ -1095,6 +1300,28 @@ class ReallyRoomatesApp {
     const soundwave = document.getElementById('audio-indicator');
     const heroStrum = document.getElementById('hero-chord-strum');
 
+    // Wire up string vibration visualizer
+    guitarEngine.onStringPluckCallback = (stringIndex) => {
+      const idx = Math.min(5, Math.max(0, stringIndex));
+      const el = document.querySelector(`.acoustic-string-line[data-string="${idx}"]`);
+      if (el) {
+        el.classList.add('vibrating');
+        setTimeout(() => el.classList.remove('vibrating'), 240);
+      }
+    };
+
+    // Strumming style selector
+    const styleButtons = document.querySelectorAll('#strum-style-group .filter-pill');
+    styleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        styleButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const style = btn.getAttribute('data-strum-style');
+        guitarEngine.currentMode = style;
+        this.showToast(`Acoustic style: ${btn.textContent.trim()}`, '🎸');
+      });
+    });
+
     const playChord = (chordName) => {
       guitarEngine.strumChord(chordName);
       if (statusLabel) statusLabel.textContent = `Strummed: ${chordName} (Acoustic Chime)`;
@@ -1196,6 +1423,73 @@ class ReallyRoomatesApp {
     if (cardTheme) cardTheme.textContent = item.theme;
     if (cardReflection) cardReflection.textContent = item.reflection;
     if (cardPrayer) cardPrayer.innerHTML = `<strong>Prayer:</strong> ${this.escapeHtml(item.prayer)}`;
+  }
+
+  // --------------------------------------------------------------------------
+  // Scam Risk Detector & Interview Guide
+  // --------------------------------------------------------------------------
+  setupScamDetector() {
+    const checks = document.querySelectorAll('.scam-check-input');
+    const meterFill = document.getElementById('scam-meter-fill');
+    const riskLabel = document.getElementById('scam-risk-label');
+    const riskAdvice = document.getElementById('scam-risk-advice');
+    const resetBtn = document.getElementById('btn-reset-scam-meter');
+
+    const updateScamMeter = () => {
+      let score = 0;
+      checks.forEach(chk => {
+        if (chk.checked) {
+          score += parseInt(chk.getAttribute('data-weight') || '2', 10);
+        }
+      });
+
+      if (!meterFill || !riskLabel || !riskAdvice) return;
+
+      if (score === 0) {
+        meterFill.style.width = '0%';
+        meterFill.style.backgroundColor = 'var(--green-success)';
+        riskLabel.textContent = '✓ Safe — 0 Red Flags';
+        riskLabel.style.color = 'var(--green-success)';
+        riskAdvice.textContent = 'No red flags checked. Always verify landlord ID and tour physically before sending any funds.';
+      } else if (score <= 3) {
+        meterFill.style.width = '45%';
+        meterFill.style.backgroundColor = 'var(--amber-400)';
+        riskLabel.textContent = '⚠️ Caution — Warning Signs Present';
+        riskLabel.style.color = 'var(--amber-300)';
+        riskAdvice.textContent = 'Exercise caution! Do not send deposit or sensitive info until you have seen the room physically or via verified live video.';
+      } else {
+        meterFill.style.width = '100%';
+        meterFill.style.backgroundColor = 'var(--rose-urgent)';
+        riskLabel.textContent = '🚨 High Danger — Probable Scam!';
+        riskLabel.style.color = 'var(--rose-urgent)';
+        riskAdvice.textContent = 'Severe warning signs detected! Never wire money or provide SSN. Report this listing and search verified options.';
+      }
+    };
+
+    checks.forEach(chk => chk.addEventListener('change', updateScamMeter));
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        checks.forEach(chk => chk.checked = false);
+        updateScamMeter();
+        this.showToast("Scam checks reset to zero", "↺");
+      });
+    }
+
+    const copyQuestionsBtn = document.getElementById('btn-copy-interview-questions');
+    const questionsList = document.getElementById('interview-questions-list');
+    if (copyQuestionsBtn && questionsList) {
+      copyQuestionsBtn.addEventListener('click', async () => {
+        const items = questionsList.querySelectorAll('li');
+        const text = Array.from(items).map((li, i) => `${i + 1}. ${li.innerText || li.textContent}`).join('\n');
+        try {
+          await navigator.clipboard.writeText(text);
+          this.showToast("10 Roommate Questions copied to clipboard!", "📋");
+        } catch (e) {
+          this.showToast("Questions copied", "📋");
+        }
+      });
+    }
   }
 
   // --------------------------------------------------------------------------

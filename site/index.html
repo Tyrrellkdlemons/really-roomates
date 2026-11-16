@@ -229,6 +229,11 @@
             <span class="hero-pill">🎸 Musician & Soul Friendly</span>
           </div>
 
+          <div class="deadline-countdown-badge" id="hero-countdown-badge">
+            <span aria-hidden="true">⏳</span>
+            <span id="countdown-text">Move Target: November 25, 2026 • 9 Days Remaining</span>
+          </div>
+
           <h1 class="hero-title" id="hero-title">
             <span>A Fresh Season. A Place to Rest.</span><br>
             <span class="text-gradient">Songs in the Night.</span>
@@ -370,6 +375,25 @@
               <button class="filter-pill" data-filter="category" data-value="Transitional & Sober Living">Transitional & Sober Living</button>
               <button class="filter-pill" data-filter="category" data-value="Faith-Based Housing">Faith-Based Housing</button>
               <button class="filter-pill" data-filter="category" data-value="Extended Stay Bridge">Extended Stay Bridge</button>
+            </div>
+
+            <!-- Budget Tier Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Budget:</span>
+              <button class="filter-pill active" data-filter="budgetTier" data-value="All">All Tiers</button>
+              <button class="filter-pill" data-filter="budgetTier" data-value="Under $800/mo">Under $800/mo</button>
+              <button class="filter-pill" data-filter="budgetTier" data-value="$800 – $1,100/mo">$800 – $1,100/mo</button>
+              <button class="filter-pill" data-filter="budgetTier" data-value="$1,100+/mo">$1,100+/mo</button>
+              <button class="filter-pill" data-filter="budgetTier" data-value="Grant / Free">Free Grants / Deposit</button>
+            </div>
+
+            <!-- Quick Feature Toggles -->
+            <div class="filter-row" style="margin-top: 6px;">
+              <span class="filter-label">Quick:</span>
+              <button class="filter-pill" id="filter-fav-btn" data-toggle="favorites">⭐ Saved Favorites (<span id="fav-count-pill">0</span>)</button>
+              <button class="filter-pill" data-toggle="musicianFriendly">🎸 Musician-Friendly</button>
+              <button class="filter-pill" data-toggle="zeroDeposit">💰 Zero / Low Deposit</button>
+              <button class="filter-pill" data-toggle="immediate">⚡ Fast Move-in (&lt; 48h)</button>
             </div>
           </div>
         </div>
@@ -534,6 +558,91 @@
             </div>
           </div>
         </div>
+
+        <!-- Side-by-Side Lease Comparison: Traditional CA Apartment vs. PadSplit Coliving -->
+        <div class="lease-comparison-wrap">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span class="hero-pill pill-green">📊 Move-In Comparison</span>
+              <h3 class="font-serif" style="color: var(--amber-100); font-size: 1.25rem; margin-top: 6px;">
+                Traditional California Lease vs. PadSplit Coliving
+              </h3>
+              <p class="text-muted" style="font-size: 0.85rem;">
+                See why coliving saves over $1,700 upfront and bypasses credit barriers during transition.
+              </p>
+            </div>
+          </div>
+
+          <div class="lease-comparison-grid">
+            <!-- Traditional Apartment -->
+            <div class="comparison-card">
+              <span class="comparison-badge" style="background: rgba(244, 63, 94, 0.2); color: var(--rose-urgent); border: 1px solid rgba(244, 63, 94, 0.4);">
+                Traditional California Rental
+              </span>
+              <h4 style="font-size: 1.1rem; color: var(--text-cream); margin-top: 4px;">Standard Apartment / Studio</h4>
+              <ul style="list-style: none; font-size: 0.84rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
+                <li>• <strong>Upfront Cash Needed:</strong> ~$2,200 – $3,500 (1st mo + deposit + fees)</li>
+                <li>• <strong>Deposit Required:</strong> Up to 1 month rent ($850 – $1,800 under AB 12)</li>
+                <li>• <strong>Credit & Income Barrier:</strong> 650–700+ credit score, 3x rent income</li>
+                <li>• <strong>Utilities:</strong> Separate ($150–$250/mo electric, gas, water, Wi-Fi)</li>
+                <li>• <strong>Lease Commitment:</strong> 12-Month rigid lock-in with penalty to break</li>
+                <li>• <strong>Approval Timeline:</strong> 2 to 4 weeks of back-and-forth vetting</li>
+              </ul>
+            </div>
+
+            <!-- PadSplit Coliving -->
+            <div class="comparison-card highlight-card">
+              <span class="comparison-badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4);">
+                ⭐ Recommended Fast Alternative
+              </span>
+              <h4 style="font-size: 1.1rem; color: var(--amber-200); margin-top: 4px;">PadSplit Co-Living / Furnished Room</h4>
+              <ul style="list-style: none; font-size: 0.84rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px; margin-top: 8px;">
+                <li>• <strong>Upfront Cash Needed:</strong> ~$280 – $450 (1 week rent + $99 move-in fee)</li>
+                <li>• <strong>Deposit Required:</strong> <strong>$0 deposit</strong> ($99–$199 one-time move-in fee)</li>
+                <li>• <strong>Credit & Income Barrier:</strong> <strong>No minimum credit score</strong> (income proof only)</li>
+                <li>• <strong>Utilities:</strong> <strong>100% Included</strong> (high-speed Wi-Fi, electricity, water)</li>
+                <li>• <strong>Lease Commitment:</strong> Flexible weekly / monthly (stay as long or short as you need)</li>
+                <li>• <strong>Approval Timeline:</strong> <strong>Move in within 24 to 48 hours</strong></li>
+              </ul>
+              <div style="margin-top: 10px;">
+                <a class="btn-primary" href="https://www.padsplit.com/rooms-for-rent" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; padding: 6px 14px;">
+                  <span>Explore PadSplit CA Rooms</span> ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AB 12 Violation Letter Generator Box -->
+        <div class="ab12-tool-box" id="ab12-generator-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="hero-pill" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">⚖️ 1-Click Renter Defense</span>
+              <h3 class="font-serif" style="color: var(--amber-100); font-size: 1.25rem; margin-top: 6px;">
+                California AB 12 Landlord Notice Generator
+              </h3>
+              <p class="text-muted" style="font-size: 0.85rem;">
+                If a California landlord demands more than 1 month rent for deposit, generate this polite, legally referenced notice:
+              </p>
+            </div>
+            <button class="btn-primary" id="btn-copy-ab12-letter" style="padding: 8px 16px; font-size: 0.82rem;">
+              <span>📋 Copy Notice to Clipboard</span>
+            </button>
+          </div>
+
+          <div class="letter-preview-box" id="ab12-letter-preview">Dear Landlord / Property Manager,
+
+Thank you for considering my application. I am very interested in this room and look forward to being a quiet, reliable resident.
+
+Regarding the move-in costs: Please note that under California Assembly Bill 12 (codified in California Civil Code § 1950.5), which took effect on July 1, 2024, residential security deposits in California are legally capped at a maximum of one (1) month's rent.
+
+Based on our agreed monthly rent of $<span id="ab12-letter-rent">850</span>, the maximum lawful security deposit is $<span id="ab12-letter-deposit">850</span>.
+
+I am fully prepared to remit the first month's rent ($<span id="ab12-letter-rent2">850</span>) plus the lawful security deposit ($<span id="ab12-letter-deposit2">850</span>) upon signing. Thank you for ensuring our agreement complies with California tenant law.
+
+Sincerely,
+[Your Name]</div>
+        </div>
       </section>
 
       <!-- ====================================================================
@@ -643,6 +752,34 @@
                   Cadd9
                   <span>Sweet Release</span>
                 </button>
+                <button class="chord-btn" data-chord="Fmaj7">
+                  Fmaj7
+                  <span>Restful Shore</span>
+                </button>
+                <button class="chord-btn" data-chord="Gsus4">
+                  Gsus4
+                  <span>Resolution</span>
+                </button>
+              </div>
+
+              <!-- Strum Style Selector -->
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
+                <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Play Style:</span>
+                <div style="display: flex; gap: 6px;" id="strum-style-group">
+                  <button class="filter-pill active" data-strum-style="natural" style="font-size: 0.75rem; padding: 4px 10px;">Natural Strum</button>
+                  <button class="filter-pill" data-strum-style="fingerpick" style="font-size: 0.75rem; padding: 4px 10px;">Gentle Fingerpick</button>
+                  <button class="filter-pill" data-strum-style="resonance" style="font-size: 0.75rem; padding: 4px 10px;">Soul Resonance</button>
+                </div>
+              </div>
+
+              <!-- Interactive Vibrating Guitar Strings Visualizer -->
+              <div class="acoustic-strings-visualizer" id="guitar-strings-visualizer" aria-label="Acoustic guitar strings visualizer">
+                <div class="acoustic-string-line" data-string="0" title="Low E string"></div>
+                <div class="acoustic-string-line" data-string="1" title="A string"></div>
+                <div class="acoustic-string-line" data-string="2" title="D string"></div>
+                <div class="acoustic-string-line" data-string="3" title="G string"></div>
+                <div class="acoustic-string-line" data-string="4" title="B string"></div>
+                <div class="acoustic-string-line" data-string="5" title="High E string"></div>
               </div>
 
               <div class="ambient-play-row">
@@ -756,6 +893,100 @@
             </p>
             <a class="btn-secondary" href="#housing-hub">Browse Verified Rooms ↓</a>
           </div>
+        </div>
+
+        <!-- Rental Scam Risk Detector -->
+        <div class="scam-detector-card" id="scam-detector" style="margin-top: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span class="hero-pill" style="background: rgba(244, 63, 94, 0.2); color: var(--rose-urgent); border: 1px solid rgba(244, 63, 94, 0.4);">🛡️ Scam Protection Shield</span>
+              <h3 class="font-serif" style="color: var(--amber-100); font-size: 1.25rem; margin-top: 6px;">
+                California Room Rental Scam Risk Meter
+              </h3>
+              <p class="text-muted" style="font-size: 0.85rem;">
+                Evaluating a Craigslist, Facebook Marketplace, or private room listing? Check any warning signs below:
+              </p>
+            </div>
+            <button class="btn-secondary" id="btn-reset-scam-meter" style="padding: 4px 10px; font-size: 0.78rem;">
+              <span>Reset Checks ↺</span>
+            </button>
+          </div>
+
+          <ul class="scam-checks-list" id="scam-checks-container">
+            <li>
+              <label class="scam-check-label">
+                <input type="checkbox" class="scam-check-input" data-weight="3">
+                <span>Landlord demands wire transfer, Zelle, Cash App, or gift cards before you step inside the room</span>
+              </label>
+            </li>
+            <li>
+              <label class="scam-check-label">
+                <input type="checkbox" class="scam-check-input" data-weight="2">
+                <span>Price is suspiciously below market (e.g. $550/mo for a luxury master bedroom in Irvine or Santa Monica)</span>
+              </label>
+            </li>
+            <li>
+              <label class="scam-check-label">
+                <input type="checkbox" class="scam-check-input" data-weight="2">
+                <span>"Owner" claims to be on a missionary trip, in the military, or out of the country and cannot meet in person</span>
+              </label>
+            </li>
+            <li>
+              <label class="scam-check-label">
+                <input type="checkbox" class="scam-check-input" data-weight="2">
+                <span>Refuses to do a live video call where they walk through the house and unlock the room door</span>
+              </label>
+            </li>
+            <li>
+              <label class="scam-check-label">
+                <input type="checkbox" class="scam-check-input" data-weight="1">
+                <span>Requests your full Social Security Number or banking details before showing you the room</span>
+              </label>
+            </li>
+          </ul>
+
+          <div class="risk-meter-wrap">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-cream);">Risk Assessment:</span>
+              <span id="scam-risk-label" style="font-size: 0.85rem; font-weight: 800; color: var(--green-success);">✓ Safe — 0 Red Flags</span>
+            </div>
+            <div class="risk-meter">
+              <div class="risk-meter-fill" id="scam-meter-fill"></div>
+            </div>
+            <p id="scam-risk-advice" style="font-size: 0.82rem; color: var(--text-muted); margin-top: 6px;">
+              No red flags checked. Always verify landlord ID and tour physically before sending any funds.
+            </p>
+          </div>
+        </div>
+
+        <!-- Expandable Roommate Interview & Vetting Questions -->
+        <div class="resource-card" style="margin-top: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span class="hero-pill pill-green">🤝 Vetting Guide</span>
+              <h3 class="font-serif" style="color: var(--amber-200); font-size: 1.2rem; margin-top: 4px;">
+                10 Must-Ask Roommate Interview Questions
+              </h3>
+            </div>
+            <button class="btn-secondary" id="btn-copy-interview-questions" style="padding: 4px 10px; font-size: 0.78rem;">
+              <span>📋 Copy 10 Questions</span>
+            </button>
+          </div>
+          <p class="text-muted" style="font-size: 0.85rem; margin: 8px 0;">
+            Ask these during your in-person or phone tour to guarantee harmony and avoid uncomfortable surprises:
+          </p>
+          <ol style="font-size: 0.84rem; color: var(--text-cream); padding-left: 20px; line-height: 1.7;" id="interview-questions-list">
+            <li>What are the official house quiet hours on weeknights and weekends?</li>
+            <li>How are utility bills (electric, gas, water, Wi-Fi) divided and on what day are they due?</li>
+            <li>What is the guest/partner overnight policy? (How many nights per week are permitted?)</li>
+            <li>How do roommates handle shared refrigerator space, cabinet shelves, and cooking cleanup?</li>
+            <li>What is the chore rotation for bathrooms, kitchen counters, and trash bins?</li>
+            <li>Are there any current pets in the home or planned pets?</li>
+            <li>I play acoustic guitar with headphones or at low volume during daytime — is that comfortable with everyone?</li>
+            <li>What is the parking situation (assigned spot, driveway, or street permit)?</li>
+            <li>Has anyone in the house had lease conflicts in the past, and how was it solved?</li>
+            <li>What is the protocol if someone needs to move out early (notice period, sublease allowance)?</li>
+          </ol>
         </div>
       </section>
 
@@ -899,5 +1130,8 @@
       </ul>
     </div>
   </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
 </body>
 </html>

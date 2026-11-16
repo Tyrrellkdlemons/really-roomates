@@ -2024,6 +2024,254 @@ button:active, a.btn-primary:active, a.btn-secondary:active, .launch-card:active
 }
 
 /* --------------------------------------------------------------------------
+   Interactive Upgrades: Toast Notifications, Lease Comparison, Red-Flag Meter
+   -------------------------------------------------------------------------- */
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: calc(var(--header-height) + 16px);
+  right: 20px;
+  z-index: 11000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast-message {
+  background: rgba(24, 18, 14, 0.95);
+  border: 1px solid var(--border-bright);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 16px var(--glow-amber);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  color: var(--amber-100);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: toastSlideIn 0.25s var(--ease);
+  pointer-events: auto;
+}
+
+@keyframes toastSlideIn {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Move Countdown Pill */
+.deadline-countdown-badge {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(180, 83, 9, 0.25) 100%);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-full);
+  padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--amber-200);
+  box-shadow: 0 0 14px var(--glow-amber);
+  margin-top: 8px;
+}
+
+/* Card Action Top-Right Bar (Favorite + Share) */
+.card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-fav-btn, .card-share-btn {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--border-subtle);
+  color: var(--amber-300);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.card-fav-btn:hover, .card-share-btn:hover, .card-fav-btn:focus-visible, .card-share-btn:focus-visible {
+  border-color: var(--amber-400);
+  background: rgba(245, 158, 11, 0.25);
+  outline: none;
+}
+
+.card-fav-btn.is-favorite {
+  background: var(--amber-500);
+  color: #120904;
+  border-color: var(--amber-400);
+  box-shadow: 0 0 10px var(--glow-amber);
+}
+
+/* Side-by-Side Lease Comparison Widget */
+.lease-comparison-wrap {
+  margin-top: 24px;
+  background: rgba(14, 10, 8, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.lease-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+@media (min-width: 640px) {
+  .lease-comparison-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.comparison-card {
+  background: rgba(20, 14, 10, 0.9);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comparison-card.highlight-card {
+  border-color: var(--green-success);
+  background: rgba(16, 185, 129, 0.08);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+}
+
+.comparison-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+}
+
+/* AB 12 Violation Letter Generator Box */
+.ab12-tool-box {
+  background: rgba(14, 10, 8, 0.9);
+  border: 1px solid var(--blue-california);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.letter-preview-box {
+  background: #080504;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #bae6fd;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Scam Risk Detector */
+.scam-detector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(14px);
+}
+
+.scam-checks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scam-check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-cream);
+}
+
+.scam-check-input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--rose-urgent);
+}
+
+.risk-meter-wrap {
+  margin-top: 10px;
+}
+
+.risk-meter {
+  width: 100%;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: rgba(14, 10, 8, 0.8);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.risk-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--green-success);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Interactive Guitar Strings Vibration Canvas / Visualizer */
+.acoustic-strings-visualizer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 8px;
+  background: rgba(10, 6, 4, 0.85);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  margin-top: 10px;
+}
+
+.acoustic-string-line {
+  height: 2px;
+  background: linear-gradient(90deg, #78350f 0%, #fbbf24 50%, #78350f 100%);
+  opacity: 0.45;
+  border-radius: 1px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.acoustic-string-line.vibrating {
+  opacity: 1;
+  background: linear-gradient(90deg, #f59e0b 0%, #ffffff 50%, #f59e0b 100%);
+  box-shadow: 0 0 10px var(--glow-amber-lg);
+  animation: stringWave 0.25s infinite ease-in-out;
+}
+
+@keyframes stringWave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* --------------------------------------------------------------------------
    Print Optimization (@media print)
    -------------------------------------------------------------------------- */
 @media print {

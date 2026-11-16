@@ -1,6 +1,6 @@
 /**
  * REALLY ROOMATES — Grace & Strings
- * Pure Web Audio API Acoustic Guitar Chord Synthesizer
+ * Pure Web Audio API Acoustic Guitar Chord Synthesizer & String Physics Engine
  * Simulates physical acoustic guitar string pluck harmonics & resonance chamber
  * Zero external audio files, works 100% offline and instantly.
  */
@@ -12,6 +12,8 @@ class AcousticGuitarEngine {
     this.convolver = null;
     this.isPlayingArpeggio = false;
     this.arpeggioTimer = null;
+    this.currentMode = 'strum'; // 'strum' or 'fingerpick'
+    this.onStringPluckCallback = null;
 
     // Guitar Chord Frequencies (Hz) for standard acoustic voicing
     this.chords = {
@@ -57,6 +59,20 @@ class AcousticGuitarEngine {
         { note: 'G3', freq: 196.00, delay: 0.06 },
         { note: 'D4', freq: 293.66, delay: 0.09 },
         { note: 'G4', freq: 392.00, delay: 0.12 }
+      ],
+      'Fmaj7': [
+        { note: 'F2', freq: 87.31,  delay: 0.00 },
+        { note: 'C3', freq: 130.81, delay: 0.03 },
+        { note: 'F3', freq: 174.61, delay: 0.06 },
+        { note: 'A3', freq: 220.00, delay: 0.09 },
+        { note: 'E4', freq: 329.63, delay: 0.12 }
+      ],
+      'Gsus4': [
+        { note: 'G2', freq: 98.00,  delay: 0.00 },
+        { note: 'C3', freq: 130.81, delay: 0.03 },
+        { note: 'D3', freq: 146.83, delay: 0.06 },
+        { note: 'G3', freq: 196.00, delay: 0.09 },
+        { note: 'D4', freq: 293.66, delay: 0.12 }
       ]
     };
   }
@@ -96,8 +112,14 @@ class AcousticGuitarEngine {
   }
 
   // Synthesize an individual acoustic guitar string pluck
-  pluckString(frequency, startTime, duration = 3.2, velocity = 0.8) {
+  pluckString(frequency, startTime, duration = 3.2, velocity = 0.8, stringIndex = 0) {
     if (!this.ctx) return;
+
+    if (this.onStringPluckCallback) {
+      setTimeout(() => {
+        if (this.onStringPluckCallback) this.onStringPluckCallback(stringIndex, frequency);
+      }, Math.max(0, (startTime - this.ctx.currentTime) * 1000));
+    }
 
     // Harmonic partials that give acoustic steel/bronze string resonance
     const harmonics = [
@@ -131,20 +153,32 @@ class AcousticGuitarEngine {
     });
   }
 
-  // Strum a full chord with authentic micro-delay strum timing
-  strumChord(chordName, speed = 'natural') {
+  // Strum a full chord with authentic micro-delay strum timing or fingerpick
+  strumChord(chordName, style = null) {
     if (!this.init()) return;
 
+    const playStyle = style || this.currentMode;
     const chord = this.chords[chordName] || this.chords['Cmaj9'];
     const now = this.ctx.currentTime;
-    const delayMultiplier = speed === 'slow' ? 0.05 : 0.025;
 
-    chord.forEach((string, idx) => {
-      const stringTime = now + (idx * delayMultiplier);
-      const stringDuration = 3.2 - (idx * 0.15);
-      const velocity = 0.75 + (Math.random() * 0.15); // Humanize
-      this.pluckString(string.freq, stringTime, stringDuration, velocity);
-    });
+    if (playStyle === 'fingerpick') {
+      // Fingerpicking pattern: Bass note first, then arpeggio pattern 0, 2, 1, 3, 2, 4
+      const pattern = [0, 1, 2, 3, 2, 1];
+      pattern.forEach((pIdx, step) => {
+        const item = chord[pIdx % chord.length];
+        const stringTime = now + (step * 0.18);
+        this.pluckString(item.freq, stringTime, 2.8, 0.75, pIdx);
+      });
+    } else {
+      // Natural acoustic strum
+      const delayMultiplier = playStyle === 'slow' ? 0.05 : 0.024;
+      chord.forEach((string, idx) => {
+        const stringTime = now + (idx * delayMultiplier);
+        const stringDuration = 3.2 - (idx * 0.15);
+        const velocity = 0.75 + (Math.random() * 0.15); // Humanize
+        this.pluckString(string.freq, stringTime, stringDuration, velocity, idx);
+      });
+    }
   }
 
   // Gentle acoustic reflection sequence (peaceful 4-chord progression)
@@ -163,10 +197,10 @@ class AcousticGuitarEngine {
     const playNext = () => {
       if (!this.isPlayingArpeggio) return;
       const currentChord = progression[step % progression.length];
-      this.strumChord(currentChord, 'slow');
+      this.strumChord(currentChord, this.currentMode === 'fingerpick' ? 'fingerpick' : 'slow');
       if (onStepChange) onStepChange(currentChord, step % progression.length);
       step++;
-      this.arpeggioTimer = setTimeout(playNext, 3800);
+      this.arpeggioTimer = setTimeout(playNext, 4200);
     };
 
     playNext();
