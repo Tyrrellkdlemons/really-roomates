@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#f59e0b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#b45309" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="body-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="string-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle with dark warm finish -->
+  <circle cx="32" cy="32" r="30" fill="#140e0a" stroke="#d97706" stroke-width="2"/>
+  <circle cx="32" cy="32" r="28" fill="url(#sun-glow)" opacity="0.35"/>
+
+  <!-- Cross rays / sunlight of grace -->
+  <path d="M32 6V58M6 32H58" stroke="#fbbf24" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- Acoustic Guitar Body Silhouette -->
+  <!-- Upper bout, waist, and lower bout -->
+  <path d="M32 18 C26 18 22 22 24 28 C25 31 23 33 21 37 C18 43 21 51 32 51 C43 51 46 43 43 37 C41 33 39 31 40 28 C42 22 38 18 32 18 Z" fill="url(#body-grad)" stroke="#fef3c7" stroke-width="1.2"/>
+
+  <!-- Soundhole & Rosette -->
+  <circle cx="32" cy="34" r="5" fill="#1c130d" stroke="#fef3c7" stroke-width="1"/>
+  <circle cx="32" cy="34" r="6.5" fill="none" stroke="#fbbf24" stroke-width="0.75" stroke-opacity="0.8"/>
+
+  <!-- Bridge -->
+  <rect x="27" y="44" width="10" height="2.5" rx="1" fill="#451a03" stroke="#fef3c7" stroke-width="0.5"/>
+
+  <!-- Fretboard / Neck -->
+  <path d="M30 7H34V18H30Z" fill="#291e14" stroke="#fef3c7" stroke-width="0.8"/>
+
+  <!-- Headstock -->
+  <path d="M29 3H35V7H29Z" fill="#78350f" stroke="#fef3c7" stroke-width="0.8"/>
+
+  <!-- Strings (Golden Chime) -->
+  <line x1="31" y1="5" x2="31" y2="44" stroke="url(#string-grad)" stroke-width="0.6"/>
+  <line x1="32" y1="5" x2="32" y2="44" stroke="url(#string-grad)" stroke-width="0.6"/>
+  <line x1="33" y1="5" x2="33" y2="44" stroke="url(#string-grad)" stroke-width="0.6"/>
+
+  <!-- Radiant Cross Star at top of headstock -->
+  <path d="M32 1L32.8 2.5L34.5 3.2L32.8 4L32 5.5L31.2 4L29.5 3.2L31.2 2.5Z" fill="#fbbf24"/>
+</svg>

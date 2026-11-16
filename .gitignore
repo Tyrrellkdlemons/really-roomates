@@ -1,0 +1,17 @@
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/AGENTS.md
+!/CLAUDE.md
+!/GEMINI.md
+!/netlify.toml
+!/coordination/
+!/scripts/
+!/site/
+**/*.tmp
+**/node_modules/
+**/.env*
+/site/README.md
+/site/verification*.json
+.netlify

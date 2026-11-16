@@ -1,0 +1,380 @@
+[
+  {
+    "id": "padsplit-ca",
+    "name": "PadSplit — California Rooms & Coliving",
+    "category": "Fast Move-in",
+    "region": "All California",
+    "priceRange": "$180 – $260 / week",
+    "speed": "Immediate (< 48 hrs)",
+    "depositRequirement": "Minimal ($99 – $199 move-in fee)",
+    "creditCheck": "No Minimum Credit Score (Income Verification)",
+    "guitarFriendlyRating": "Moderate (Private room, quiet hours 10pm-7am)",
+    "summary": "The fastest alternative to traditional leases in California. Rent a private furnished room with all utilities and high-speed Wi-Fi included. Pay weekly or bi-weekly.",
+    "keyPerks": [
+      "Move in within 24 to 48 hours of verification",
+      "No 12-month lease commitment (stay week-to-week or months)",
+      "All utilities, electric, gas, water, and Wi-Fi included",
+      "Fixed weekly payments keep budgeting completely predictable"
+    ],
+    "actionUrl": "https://www.padsplit.com/rooms-for-rent",
+    "actionLabel": "Explore PadSplit California",
+    "proTip": "Have proof of your last 30 days income ready (pay stubs or bank deposits). Approval is automated based on income-to-rent ratio, not credit score."
+  },
+  {
+    "id": "furnished-finder-ca",
+    "name": "Furnished Finder — Mid-Term & 30+ Day Stays",
+    "category": "Room Share / Coliving",
+    "region": "All California",
+    "priceRange": "$850 – $1,400 / month",
+    "speed": "Fast (3–5 days)",
+    "depositRequirement": "Low Deposit ($250 – $500 typical)",
+    "creditCheck": "Background Check (Landlord Discretion)",
+    "guitarFriendlyRating": "High (Many detached ADUs, granny flats & in-law suites)",
+    "summary": "Originally created for traveling nurses and transitioners, Furnished Finder has tens of thousands of private rooms, guest suites, and detached ADUs across California with no booking fees.",
+    "keyPerks": [
+      "Zero traveler booking fees (saves $150–$300 vs Airbnb)",
+      "Fully furnished with full kitchens and dedicated laundry",
+      "Lots of separate detached guest houses and in-law suites",
+      "Direct communication with property owners before committing"
+    ],
+    "actionUrl": "https://www.furnishedfinder.com/housing/California",
+    "actionLabel": "Search Furnished Finder CA",
+    "proTip": "Send a polite intro message highlighting you are a reliable, respectful roommate who plays acoustic guitar with headphones or respectful daytime hours."
+  },
+  {
+    "id": "ca-ab12-protection",
+    "name": "California AB 12 — 1-Month Security Deposit Cap Law",
+    "category": "Deposit & Downpayment Grant",
+    "region": "All California",
+    "priceRange": "Legal Protection (Saves $1,000+ Upfront)",
+    "speed": "Immediate Legal Right",
+    "depositRequirement": "MAX 1 Month Rent (State Law as of July 1, 2024)",
+    "creditCheck": "Protects all renters across California",
+    "guitarFriendlyRating": "Universal Legal Right",
+    "summary": "As of July 1, 2024, California Assembly Bill 12 strictly forbids landlords from demanding more than ONE MONTH'S RENT as a security deposit (previously 2-3 months). Know your rights!",
+    "keyPerks": [
+      "No landlord can legally charge first + double deposit",
+      "Reduces initial move-in cash barrier by 50% across California",
+      "Applies whether unit is furnished or unfurnished",
+      "Small landlords (owning <= 2 properties with <= 4 units) can only charge up to 2 months if not an LLC/corporation"
+    ],
+    "actionUrl": "https://oag.ca.gov/consumers/general/landlord-tenant-issues",
+    "actionLabel": "Read Official CA Tenant Rights",
+    "proTip": "If a landlord demands 2 months deposit, cite California Civil Code § 1950.5 (AB 12). Most landlords will immediately correct the lease once they know you understand state law."
+  },
+  {
+    "id": "ca-211-housing-ces",
+    "name": "California 2-1-1 & Coordinated Entry (Rapid Re-Housing)",
+    "category": "Deposit & Downpayment Grant",
+    "region": "All California",
+    "priceRange": "Free Grant / Direct Assistance",
+    "speed": "Urgent Triage (Call immediately)",
+    "depositRequirement": "Programs cover 1st Month + Full Deposit",
+    "creditCheck": "Zero Credit Barrier",
+    "guitarFriendlyRating": "High (Enables stable private housing)",
+    "summary": "California's official Coordinated Entry System (CES) connects individuals facing housing instability or transition directly to local rapid re-housing funds, deposit grants, and motel voucher bridges.",
+    "keyPerks": [
+      "Dial 2-1-1 or text your ZIP code to 898211 for 24/7 live assistance",
+      "Access to Emergency Solutions Grants (ESG) and Homeless Prevention funds",
+      "Assistance for deposit, first month rent, and application fees",
+      "Connects to county-specific flexible housing pools"
+    ],
+    "actionUrl": "https://www.211ca.org/",
+    "actionLabel": "Connect to 2-1-1 California",
+    "proTip": "When you call, specifically request an intake for 'Rapid Re-Housing Security Deposit Assistance' and 'Flexible Housing Bridge Funds'."
+  },
+  {
+    "id": "welcome-home-oc",
+    "name": "Welcome Home OC & Orange County United Way",
+    "category": "Deposit & Downpayment Grant",
+    "region": "Orange County / SoCal",
+    "priceRange": "Full Security Deposit Grant + Move-in Support",
+    "speed": "Application (1–2 weeks)",
+    "depositRequirement": "Paid by Program Grant",
+    "creditCheck": "Voucher & Landlord Incentive Program",
+    "guitarFriendlyRating": "High",
+    "summary": "Orange County's premier housing navigation program. Provides security deposit guarantees, move-in assistance funds, and a network of participating private landlords willing to work with transitional residents.",
+    "keyPerks": [
+      "Direct financial support for security deposit and holding fees",
+      "Network of pre-vetted private landlords in Orange County",
+      "Ongoing housing retention support and case navigation",
+      "Helps bridge the gap from temporary stays to permanent leases"
+    ],
+    "actionUrl": "https://www.unitedwayoc.org/our-work/housing/welcome-home-oc/",
+    "actionLabel": "Visit Welcome Home OC",
+    "proTip": "If connected to campus basic needs (like CSUF) or a community partner, request a direct referral to the Welcome Home OC housing specialist."
+  },
+  {
+    "id": "pathways-of-hope",
+    "name": "Pathways of Hope — North Orange County Housing",
+    "category": "Deposit & Downpayment Grant",
+    "region": "Orange County / SoCal",
+    "priceRange": "Rental & Deposit Assistance",
+    "speed": "Fast (3–7 days)",
+    "depositRequirement": "Assistance Available",
+    "creditCheck": "Income-focused assessment",
+    "guitarFriendlyRating": "Moderate",
+    "summary": "Based in Fullerton/Anaheim, Pathways of Hope operates rapid rehousing, emergency food assistance (The HUB), and rental deposit grants for North Orange County residents and students.",
+    "keyPerks": [
+      "Direct proximity to Fullerton, Anaheim, Buena Park, and Brea",
+      "Operates rapid rehousing and emergency supportive housing",
+      "Strong partnership with local campus basic needs centers",
+      "Emergency financial assistance for move-in and utilities"
+    ],
+    "actionUrl": "https://www.pohoc.org/",
+    "actionLabel": "Contact Pathways of Hope",
+    "proTip": "Visit their Fullerton HUB center or call (714) 680-3691 early in the week at 8:30am when weekly funding allocations are refreshed."
+  },
+  {
+    "id": "share-ourselves-oc",
+    "name": "Share Ourselves (SOS) Social & Financial Relief",
+    "category": "Deposit & Downpayment Grant",
+    "region": "Orange County / SoCal",
+    "priceRange": "Emergency Aid Grants",
+    "speed": "Intake Dependent",
+    "depositRequirement": "Covers move-in and critical utility gaps",
+    "creditCheck": "No credit checks required",
+    "guitarFriendlyRating": "Encouraging Community Care",
+    "summary": "Comprehensive social services offering emergency financial assistance for move-in, rent relief, and basic stability support across Orange County.",
+    "keyPerks": [
+      "Emergency relief checks paid directly to verified landlords",
+      "Co-located medical, dental, and behavioral health support",
+      "Food pantry and nutritional support to free up cash for rent",
+      "Compassionate case workers who understand transitional life"
+    ],
+    "actionUrl": "https://shareourselves.org/services/social-services/financial-assistance/",
+    "actionLabel": "View Share Ourselves Assistance",
+    "proTip": "Call (949) 270-2100 with your rental agreement or landlord letter in hand to speed up the intake process."
+  },
+  {
+    "id": "lahsa-rapid-rehousing",
+    "name": "LAHSA & LA County Rapid Re-Housing Network",
+    "category": "Deposit & Downpayment Grant",
+    "region": "Los Angeles County",
+    "priceRange": "Time-Limited Subsidy & Deposit",
+    "speed": "Intake & Assessment",
+    "depositRequirement": "100% Deposit Grant Eligible",
+    "creditCheck": "Zero credit requirement",
+    "guitarFriendlyRating": "High",
+    "summary": "Los Angeles County's unified system providing rapid re-housing funds, deposit aid, and case management through regional access points like PATH, St. Joseph Center, and The People Concern.",
+    "keyPerks": [
+      "Security deposit grants and first month rental subsidies",
+      "Covers application fees and utility turn-on deposits",
+      "Access points across SPA 1 through SPA 8 in LA County",
+      "Flexible assistance tailored for young adults and students"
+    ],
+    "actionUrl": "https://www.lahsa.org/get-help",
+    "actionLabel": "Get Help via LAHSA",
+    "proTip": "Visit the nearest Family Solutions Center or Coordinated Entry site in your LA County service planning area (SPA) for same-day triage."
+  },
+  {
+    "id": "calhfa-downpayment",
+    "name": "CalHFA Downpayment & ADU Financing Assistance",
+    "category": "Deposit & Downpayment Grant",
+    "region": "All California",
+    "priceRange": "Up to $150,000+ or ADU Grant",
+    "speed": "Long-term Planning",
+    "depositRequirement": "Downpayment Grant / Shared Appreciation",
+    "creditCheck": "660–680 Credit Score typically required",
+    "guitarFriendlyRating": "High (Build or own your own soundproof space)",
+    "summary": "California Housing Finance Agency (CalHFA) provides California's most generous homeownership downpayment programs (MyHome Assistance and Dream For All) plus ADU construction grants.",
+    "keyPerks": [
+      "Downpayment assistance loans up to 3.5%–20% of purchase price",
+      "ADU grant funds up to $40,000 for building accessory dwelling units",
+      "Deferred payments until refinance or sale",
+      "Pathway from renting to permanent equity"
+    ],
+    "actionUrl": "https://www.calhfa.ca.gov/homebuyer/programs/index.htm",
+    "actionLabel": "Explore CalHFA Programs",
+    "proTip": "Bookmark this as your 12-to-24 month milestone goal once your transitional housing foundation is established."
+  },
+  {
+    "id": "oxford-house-ca",
+    "name": "Oxford Houses California — Self-Supporting Clean Living",
+    "category": "Transitional & Sober Living",
+    "region": "All California",
+    "priceRange": "$500 – $800 / month",
+    "speed": "Fast (1–3 days interview)",
+    "depositRequirement": "Low Move-in Fee ($100 – $200)",
+    "creditCheck": "No credit checks (House interview only)",
+    "guitarFriendlyRating": "High (Brotherhood, shared community, acoustic friendly)",
+    "summary": "Democratically run, self-supporting recovery and transitional houses across California. Zero tolerance for substances, highly supportive fellowship, very affordable shared living.",
+    "keyPerks": [
+      "No lease or credit check — admission decided by house vote",
+      "Costs are equally shared (utilities, cable, Wi-Fi included)",
+      "Strong culture of personal responsibility, accountability, and brotherhood",
+      "Over 100+ Oxford Houses active throughout Northern & Southern California"
+    ],
+    "actionUrl": "https://www.oxfordhouse.org/directory_search.php",
+    "actionLabel": "Find Oxford Houses in CA",
+    "proTip": "Call the house phone number listed in the directory directly. Ask when their weekly house meeting occurs and request an in-person or phone interview."
+  },
+  {
+    "id": "salvation-army-arc",
+    "name": "Salvation Army Adult Rehab & Transitional Residences",
+    "category": "Transitional & Sober Living",
+    "region": "All California",
+    "priceRange": "Free / Subsidized Living",
+    "speed": "Fast (Same day intake available)",
+    "depositRequirement": "Zero Deposit",
+    "creditCheck": "None",
+    "guitarFriendlyRating": "High (Chapel, worship music, guitars welcomed)",
+    "summary": "Faith-based residential centers located in Anaheim, Long Beach, Los Angeles, San Diego, Oakland, and Sacramento providing structured transitional housing, meals, and spiritual support.",
+    "keyPerks": [
+      "100% free residential shelter, meals, and work therapy programs",
+      "Spiritual grounding with Christian chaplaincy and chapel services",
+      "Safe, structured sanctuary away from chaos and negative influences",
+      "Assistance with job placement and permanent housing transition"
+    ],
+    "actionUrl": "https://www.salvationarmyusa.org/usn/adult-rehabilitation-centers/",
+    "actionLabel": "Locate Salvation Army Centers",
+    "proTip": "Salvation Army Anaheim (1300 S Lewis St) and Santa Monica/LA centers accept direct walk-in intakes Monday through Friday mornings."
+  },
+  {
+    "id": "roomies-ca",
+    "name": "Roomies.com — California Roommates & Verified Shares",
+    "category": "Room Share / Coliving",
+    "region": "All California",
+    "priceRange": "$650 – $1,100 / month",
+    "speed": "Fast (3–7 days)",
+    "depositRequirement": "1 Month Deposit (AB 12 Protected)",
+    "creditCheck": "Vetting varies by roommate profile",
+    "guitarFriendlyRating": "High (Filter by musician & music friendly tags)",
+    "summary": "Free platform for finding private rooms and roommates. Unlike Craigslist, Roomies verifies user IDs, phone numbers, and social profiles, drastically reducing rental scams.",
+    "keyPerks": [
+      "Free messaging between verified members",
+      "Detailed lifestyle filters (cleanliness, quiet hours, musicians, faith)",
+      "Transparent breakdown of rent + estimated utility split",
+      "Active listings across Fullerton, Orange, Long Beach, Irvine, LA"
+    ],
+    "actionUrl": "https://www.roomies.com/rooms/california",
+    "actionLabel": "Browse Roomies California",
+    "proTip": "Complete your profile 100% with a friendly photo, your work schedule, and a note about your quiet practice habits for guitar."
+  },
+  {
+    "id": "christian-roommates",
+    "name": "Christian Roommate Boards & Church Housing Networks",
+    "category": "Faith-Based Housing",
+    "region": "All California",
+    "priceRange": "$600 – $950 / month",
+    "speed": "Moderate (5–10 days)",
+    "depositRequirement": "Reasonable / Flexible",
+    "creditCheck": "Character references valued over credit",
+    "guitarFriendlyRating": "Highest (Worship players, acoustic fellowship highly welcomed)",
+    "summary": "Network of Christian home providers, church bulletin boards (Eastside Christian, Saddleback, Mariners, Calvary Chapel), and faith-based shared housing where values align.",
+    "keyPerks": [
+      "Peaceful, respectful living environment rooted in shared faith",
+      "Hosts prioritize character, references, and peace over credit scores",
+      "Often includes access to full home amenities, backyard, and kitchen",
+      "Natural encouragement, prayer, and uplifting community"
+    ],
+    "actionUrl": "https://www.christianroommates.com/",
+    "actionLabel": "Explore Christian Roommates",
+    "proTip": "Check the community bulletin boards at local churches (e.g. Mariners Church Irvine, Eastside Christian Anaheim, Rock Church San Diego) or call their pastoral care line for housing leads."
+  },
+  {
+    "id": "st-vincent-de-paul",
+    "name": "Society of St. Vincent de Paul — Emergency Housing Relief",
+    "category": "Deposit & Downpayment Grant",
+    "region": "All California",
+    "priceRange": "Direct Emergency Financial Aid",
+    "speed": "Urgent Response",
+    "depositRequirement": "Grants provided directly to housing providers",
+    "creditCheck": "None required",
+    "guitarFriendlyRating": "Encouraging Charitable Care",
+    "summary": "Parish-based Catholic charitable conferences that provide one-on-one home visits and emergency financial grants for rent, security deposits, and essential move-in furniture.",
+    "keyPerks": [
+      "Personalized assistance from compassionate local volunteers",
+      "Direct grants for move-in security deposits and bridge rent",
+      "Vouchers for St. Vincent de Paul thrift stores for mattresses and furnishings",
+      "No religious requirement to receive emergency aid"
+    ],
+    "actionUrl": "https://www.svdpusa.org/Assistance-Services",
+    "actionLabel": "Find Local St. Vincent Conference",
+    "proTip": "Call your local Catholic parish office and ask for the 'St. Vincent de Paul Conference helpline number'. Leave a voicemail with your name, phone, and urgent move-in need."
+  },
+  {
+    "id": "podshare-ca",
+    "name": "PodShare — Flexible Urban Coliving & Co-Living Pods",
+    "category": "Fast Move-in",
+    "region": "Los Angeles County",
+    "priceRange": "$45 – $65 / night or $950 / month",
+    "speed": "Immediate (Same-day check-in)",
+    "depositRequirement": "Zero Security Deposit",
+    "creditCheck": "ID verification only",
+    "guitarFriendlyRating": "Moderate (Co-working and creative space available)",
+    "summary": "Flexible membership coliving in Hollywood, DTLA, Venice, and Westwood. Custom pod beds with personal screens, charging stations, shared kitchens, and high-speed Wi-Fi.",
+    "keyPerks": [
+      "No lease, no deposit, check in within 1 hour",
+      "All groceries/basics (coffee, oatmeal, seasonings) complimentary",
+      "Free access to all PodShare locations across Los Angeles",
+      "Ideal 7-to-14 day bridge while touring and securing a permanent room"
+    ],
+    "actionUrl": "https://www.podshare.com/",
+    "actionLabel": "View PodShare Los Angeles",
+    "proTip": "Use PodShare for 3 to 7 days as an emergency staging ground while going on in-person room tours in Southern California."
+  },
+  {
+    "id": "extended-stay-america",
+    "name": "Extended Stay America & InTown Suites (Bridge Living)",
+    "category": "Extended Stay Bridge",
+    "region": "All California",
+    "priceRange": "$350 – $550 / week (Weekly discount)",
+    "speed": "Immediate (< 24 hrs)",
+    "depositRequirement": "$50 – $100 incidental hold only",
+    "creditCheck": "No credit check (Debit or Credit card)",
+    "guitarFriendlyRating": "High (Private sound-insulated hotel room)",
+    "summary": "Furnished studio hotel rooms with full kitchenettes (stove, full fridge, microwave) designed for weeks or months of transitional living without any lease.",
+    "keyPerks": [
+      "Full kitchen in room prevents costly takeout meals",
+      "Zero utility bills or Wi-Fi fees",
+      "Pet friendly and private parking included",
+      "Instant peace of mind while searching for the right roommate"
+    ],
+    "actionUrl": "https://www.extendedstayamerica.com/",
+    "actionLabel": "Check Weekly Rates",
+    "proTip": "Call the front desk directly and ask for the 'General Manager Special Weekly / 30-Day Rate'. On-site managers can discount online rates by 15-25%."
+  },
+  {
+    "id": "season-of-sharing-norcal",
+    "name": "Season of Sharing (NorCal) & Bay Area Deposit Grants",
+    "category": "Deposit & Downpayment Grant",
+    "region": "Bay Area / NorCal",
+    "priceRange": "Move-In & Deposit Grants up to $3,500+",
+    "speed": "Agency Referral",
+    "depositRequirement": "Covers 100% of deposit and 1st month",
+    "creditCheck": "No credit check",
+    "guitarFriendlyRating": "Universal",
+    "summary": "One of California's largest private safety-net funds covering Alameda, Contra Costa, Marin, Napa, San Francisco, San Mateo, Santa Clara, Solano, and Sonoma counties.",
+    "keyPerks": [
+      "Direct grants for housing deposits and delinquent rent",
+      "Covers emergency furniture and essential appliances",
+      "Helps individuals regain permanent housing stability",
+      "Over 85% of recipients maintain housing after 12 months"
+    ],
+    "actionUrl": "https://seasonofsharing.org/get-help/",
+    "actionLabel": "Access Season of Sharing",
+    "proTip": "Access Season of Sharing funds by connecting with community fiscal partners such as Catholic Charities, St. Anthony's, or calling 211 in Bay Area counties."
+  },
+  {
+    "id": "spareroom-ca",
+    "name": "SpareRoom USA — California Flatmates & Sublets",
+    "category": "Room Share / Coliving",
+    "region": "All California",
+    "priceRange": "$700 – $1,200 / month",
+    "speed": "Fast (3–7 days)",
+    "depositRequirement": "1 Month Max (AB 12 Protected)",
+    "creditCheck": "Host determined",
+    "guitarFriendlyRating": "High (Specific musician-friendly filter available)",
+    "summary": "Specialized platform for finding rooms in shared houses. Features unique 'Speed Roommating' events and safety moderation teams that manually review every listing.",
+    "keyPerks": [
+      "Human-moderated listings to eliminate spam and fake landlords",
+      "Search by private bathroom, furnished, or bills included",
+      "Direct chat with prospective roommates",
+      "Musician & creative-friendly filters in California urban areas"
+    ],
+    "actionUrl": "https://www.spareroom.com/rooms-for-rent/california",
+    "actionLabel": "Explore SpareRoom CA",
+    "proTip": "Use the 'Bills Included' filter to ensure your monthly housing expenses never vary when summer air conditioning spikes electricity rates."
+  }
+]
